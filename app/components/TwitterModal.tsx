@@ -1,0 +1,96 @@
+"use client";
+import Image from "next/image";
+import React, { useCallback, useState } from "react";
+import { useGetCurrentUser } from "../../hooks/user";
+import { BsImage } from "react-icons/bs";
+import { AiOutlineFileGif, AiOutlineUnorderedList } from "react-icons/ai";
+import { BsEmojiSmile } from "react-icons/bs";
+import { MdEventRepeat } from "react-icons/md";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { graphqlClient } from "@/clients/api";
+import { useCreateTweet } from "@/hooks/tweet";
+import { IoEarthSharp } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
+     
+export const TweetModal = () => {
+  const { user } = useGetCurrentUser();
+  const [content, setContent] = useState("");
+  const [imgUrl, setImgUrl] = useState<string>();
+  const {mutate} = useCreateTweet();
+
+  const handleImageUpload = useCallback(() => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "images/*");
+    input.click();
+  }, []);
+  
+  const handleCreateTweet = useCallback(() => {
+    mutate({
+      content,
+    })
+    setContent("");
+  },[content, mutate]);
+
+  return (
+    <section>
+      <div className='flex items-center justify-evenly bg-black border-b border-gray-800'>
+        <div className='cursor-pointer hover:bg-gray-900 w-full text-center px-3 py-3'>
+          <h1 className='font-bold  text-md'>For you</h1>
+        </div>  
+        <div className='cursor-pointer hover:bg-gray-900 w-full text-center px-3 py-3'>
+          <h1 className='font-bold  text-md'>Following</h1>  
+        </div>
+        <div className="flex items-center text-xl cursor-pointer hover:bg-gray-800 rounded-full p-2">
+          <IoSettingsOutline />
+        </div>
+      </div>
+
+      <div className="h-min-48 grid grid-cols-12 gap-2 border-b-[0.5px] border-b-gray-800 p-4 pb-0">
+      {user?.profileImageURL && (
+        <Image
+          src={user?.profileImageURL}
+          width={60}
+          height={60}
+          alt={"profile image"}
+          className="col-span-1 row-span-4 rounded-full"
+        />
+      )}
+      <div className="col-span-11 flex flex-col gap-2 border-b border-b-gray-800 p-2">
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="What's happening?!"
+          className="bg-black text-xl resize-none"
+          rows = {3}
+        />
+        {imgUrl && (
+          <Image
+            src={imgUrl}
+            alt="Uploaded tweet image"
+            height={200}
+            width={300}
+          />
+        )}
+        <span className="text-sky-500 flex gap-1 text-sm font-bold mt-1"><IoEarthSharp className="mt-0.5"/>Everyone can reply</span>
+      </div>
+      <div className="col-span-11 flex justify-between">
+        <div className="flex cursor-pointer gap-4 p-2 text-lg font-bold text-sky-500">
+          <BsImage onClick={handleImageUpload} />
+          <AiOutlineFileGif />
+          <AiOutlineUnorderedList />
+          <BsEmojiSmile />
+          <MdEventRepeat />
+          <HiOutlineLocationMarker />
+        </div>
+        <button
+          className="h-8 w-16 cursor-pointer rounded-full bg-blue-500 text-sm font-semibold"
+          onClick={handleCreateTweet}
+        >
+          Post
+        </button>
+      </div>
+      </div>
+    </section>
+  );
+};

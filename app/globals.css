@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -31,3 +35,9 @@ body {
     text-wrap: balance;
   }
 }
+
+
+*:focus { 
+  outline : none;
+}
+
