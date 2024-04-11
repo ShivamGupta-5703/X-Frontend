@@ -4,6 +4,9 @@ import React from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useGetUserById } from "@/hooks/user";
 import Link from "next/link";
+import { User } from "@/gql/graphql";
+import FollowButton from "./FollowButton";
+
 
 const UserProfile = ({ id }: { id: string }) => {
   //console.log(id);
@@ -11,8 +14,6 @@ const UserProfile = ({ id }: { id: string }) => {
   const { user } = useGetUserById(id);
   //console.log(user);
   
-  
-
   return (
     <section className="mb-2 border-b border-gray-800">
         <nav className="flex items-center gap-3 py-1 px-2">
@@ -31,7 +32,7 @@ const UserProfile = ({ id }: { id: string }) => {
         alt="cover" 
         className="h-44 w-full object-cover"
       />
-      <button className="float-right m-4 rounded-full bg-white px-4 py-2 font-bold text-black">Follow</button>
+      <FollowButton className="float-right m-4 rounded-full bg-white px-4 py-2 font-bold text-black" user={user as User} />
       <section className="mx-4 mb-2">
         <div className="-mt-24">
           {user?.profileImageURL && ( 
@@ -55,12 +56,10 @@ const UserProfile = ({ id }: { id: string }) => {
         </div>
         <div className=" flex items-center gap-2 text-center mt-4">
           <button>
-            {/* <span>{user?.following?.length} </span> */}
-            <span className="text-sm font-bold">100  </span> <span className="text-sm text-gray-600"> Following </span>
+            <span className="text-sm font-bold"> {user?.following?.length}  </span> <span className="text-sm text-gray-600"> Following </span>
           </button>
           <button>
-            {/* <span>{user?.followers?.length} </span> */}
-            <span className="text-sm font-bold">100  </span> <span className="text-sm text-gray-600"> Followers </span>
+            <span className="text-sm font-bold"> {user?.followers?.length} </span> <span className="text-sm text-gray-600"> Followers </span>
           </button>
         </div>
       </section>

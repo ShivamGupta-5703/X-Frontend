@@ -1,5 +1,6 @@
 "use client"
 
+import { QueryClient } from "@tanstack/react-query";
 import { GraphQLClient } from "graphql-request";
 
 // check if authentication is done in client side
@@ -14,6 +15,15 @@ export const graphqlClient = new GraphQLClient('http://localhost:8000/graphql',{
 });
 
 
+
+export const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
+  });
+  
 
 
 

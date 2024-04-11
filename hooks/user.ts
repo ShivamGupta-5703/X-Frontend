@@ -20,7 +20,7 @@ export const useGetUserById = (id: string) => {
     queryFn: () => graphqlClient.request(getUserByIdQuery, { id }),
   });
 
-  console.log(query.data);
+  //console.log(query.data);
   
   return { ...query, user: query.data?.getUserById };
 };

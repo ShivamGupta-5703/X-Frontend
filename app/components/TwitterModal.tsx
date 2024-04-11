@@ -52,10 +52,10 @@ export const TweetModal = () => {
         //console.log(url);
         
         const myFilePath = `${url.origin}${url.pathname}`;
-        console.log(myFilePath);
-        console.log(typeof(myFilePath));
+        //console.log(myFilePath);
+        //console.log(typeof(myFilePath));
         setImageURL(myFilePath);
-        console.log(imageURL);
+        //console.log(imageURL);
       }
     };
   }, [imageURL]);
