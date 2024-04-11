@@ -3,19 +3,22 @@ import Image from "next/image";
 import React from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useGetUserById } from "@/hooks/user";
+import Link from "next/link";
 
 const UserProfile = ({ id }: { id: string }) => {
-  console.log(id);
+  //console.log(id);
   
   const { user } = useGetUserById(id);
-  console.log(user);
+  //console.log(user);
   
   
 
   return (
     <section className="mb-2 border-b border-gray-800">
         <nav className="flex items-center gap-3 py-1 px-2">
-            <BsArrowLeftShort className="text-3xl mr-4" />
+            <Link href= "/">
+              <BsArrowLeftShort className="text-3xl mr-4" />
+            </Link>
             <div>
                 <h1 className="text-xl font-bold">{user?.firstname} {user?.lastname}</h1>
                 <h1 className="text-xs text-slate-600">{user?.tweets?.length} Tweets</h1>

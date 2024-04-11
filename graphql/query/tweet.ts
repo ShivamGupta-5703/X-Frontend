@@ -5,6 +5,7 @@ export interface Tweet {
     content: string;
     imageURL: string;
     author: {
+        id : string;
         firstName: string;
         lastName: string;
         profileImageURL: string;
@@ -19,6 +20,7 @@ export const getAllTweetsQuery = graphql(
             content
             imageURL
             author{
+                id
                 firstname
                 lastname
                 profileImageURL
@@ -27,3 +29,8 @@ export const getAllTweetsQuery = graphql(
       }
 `);
 
+export const getSignedURLForTweetQuery = graphql(`
+  query GetSignedURL($imageName: String!, $imageType: String!) {
+    getSignedURLForTweet(imageName: $imageName, imageType: $imageType)
+  }
+`);

@@ -11,26 +11,77 @@ import { graphqlClient } from "@/clients/api";
 import { useCreateTweet } from "@/hooks/tweet";
 import { IoEarthSharp } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
+import { getSignedURLForTweetQuery } from "@/graphql/query/tweet";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { DocumentNode } from "graphql";
      
+
 export const TweetModal = () => {
   const { user } = useGetCurrentUser();
   const [content, setContent] = useState("");
-  const [imgUrl, setImgUrl] = useState<string>();
-  const {mutate} = useCreateTweet();
+  const [imageURL, setImageURL] = useState("");
+  const {mutateAsync} = useCreateTweet();
 
-  const handleImageUpload = useCallback(() => {
+  const handleInputChangeFile = useCallback((input: HTMLInputElement) => {
+    return async (event: Event) => {
+      event.preventDefault();
+      const file: File | null | undefined = input.files?.item(0);
+      if (!file) return;
+
+      const {getSignedURLForTweet} = await graphqlClient.request(
+        getSignedURLForTweetQuery as DocumentNode,
+        {
+          imageName: file.name,
+          imageType: file.type,
+        }
+      ) as { getSignedURLForTweet: string };
+
+      //console.log(getSignedURLForTweet);
+      
+
+      if (getSignedURLForTweet) {
+        toast.loading("Uploading...", { id: "2" });
+        await axios.put(getSignedURLForTweet, file, {
+          headers: {
+            "Content-Type": file.type,
+          },
+        });
+        toast.success("Upload Completed", { id: "2" });
+        const url = new URL(getSignedURLForTweet);
+        //console.log(url);
+        
+        const myFilePath = `${url.origin}${url.pathname}`;
+        console.log(myFilePath);
+        console.log(typeof(myFilePath));
+        setImageURL(myFilePath);
+        console.log(imageURL);
+      }
+    };
+  }, [imageURL]);
+
+  const handleSelectImage = useCallback(() => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
-    input.setAttribute("accept", "images/*");
+    input.setAttribute("accept", "image/*");
+
+    const handlerFn = handleInputChangeFile(input);
+    //console.log(handlerFn);
+    
+
+    input.addEventListener("change", handlerFn);
+
     input.click();
-  }, []);
-  
-  const handleCreateTweet = useCallback(() => {
-    mutate({
+  }, [handleInputChangeFile]);
+
+  const handleCreateTweet = useCallback(async () => {
+    await mutateAsync({
       content,
-    })
+      imageURL,
+    });
     setContent("");
-  },[content, mutate]);
+    setImageURL("");
+  }, [mutateAsync, content, imageURL]);
 
   return (
     <section>
@@ -64,9 +115,9 @@ export const TweetModal = () => {
           className="bg-black text-xl resize-none"
           rows = {3}
         />
-        {imgUrl && (
+        {imageURL && (
           <Image
-            src={imgUrl}
+            src={imageURL}
             alt="Uploaded tweet image"
             height={200}
             width={300}
@@ -76,7 +127,7 @@ export const TweetModal = () => {
       </div>
       <div className="col-span-11 flex justify-between">
         <div className="flex cursor-pointer gap-4 p-2 text-lg font-bold text-sky-500">
-          <BsImage onClick={handleImageUpload} />
+          <BsImage onClick={handleSelectImage} />
           <AiOutlineFileGif />
           <AiOutlineUnorderedList />
           <BsEmojiSmile />

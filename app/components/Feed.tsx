@@ -9,7 +9,13 @@ interface FeedProps {
 }
 
 export default function Feed(props: FeedProps) {
+
+    // for getting tweets on client side
     const {tweets = props.tweets as Tweet[] } = useGetAllTweets(); 
+
+    //console.log(props);
+    //console.log(tweets);
+    
     return (
     <>
       {tweets?.map((tweet) =>
@@ -18,3 +24,16 @@ export default function Feed(props: FeedProps) {
     </>
   );
 };
+
+
+//to server side render the tweets
+// export const getServerSideProps : GetServerSideProps<FeedProps> = async (context) => {
+//   const allTweets = await  graphqlClient.request<{ getAllTweets: Tweet[] }>(getAllTweetsQuery as DocumentNode);
+//   console.log(allTweets);
+  
+//   return{
+//     props : {
+//       tweets : allTweets.getAllTweets as Tweet[],
+//     }
+//   }
+// }

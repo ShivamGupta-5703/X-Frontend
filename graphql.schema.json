@@ -41,7 +41,7 @@
             "deprecationReason": null
           },
           {
-            "name": "imgUrl",
+            "name": "imageURL",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -297,11 +297,11 @@
             "deprecationReason": null
           },
           {
-            "name": "getTweetImgPresignedUrl",
+            "name": "getSignedURLForTweet",
             "description": null,
             "args": [
               {
-                "name": "ImgName",
+                "name": "imageName",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -317,7 +317,7 @@
                 "deprecationReason": null
               },
               {
-                "name": "ImgType",
+                "name": "imageType",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
