@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import FeedCard from "./FeedCard";
-import { Tweet } from "@/gql/graphql";
+import { Tweet } from "@/clients/gql/graphql";
 import { useGetUserById } from "@/hooks/user";
 
 const UserTweets = ({ id }: { id: string }) => {

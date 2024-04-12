@@ -6,7 +6,7 @@ import { BsBookmark } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgInsights } from "react-icons/cg";
-import { Tweet } from '@/gql/graphql';
+import { Tweet } from '@/clients/gql/graphql';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import Link from 'next/link';
 

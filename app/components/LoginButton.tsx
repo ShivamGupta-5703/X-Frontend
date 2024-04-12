@@ -19,6 +19,7 @@ export const LoginButton = () => {
 
     const handleLoginWithGoogle = useCallback(async (cred : CredentialResponse) => {
       const googleToken = cred.credential;
+      
       if(!googleToken) return toast.error(`Google Token not found`);
 
       const {verifyGoogleToken} = await graphqlClient.request(
@@ -29,14 +30,16 @@ export const LoginButton = () => {
           localStorage.setItem("x_token", verifyGoogleToken);
           toast.success('Verified Successfully');
       }
+      //console.log(verifyGoogleToken);
+      
       await queryClient.invalidateQueries({queryKey: ["currentUser"]});
 
     },[queryClient])  
 
   return (
     !user && (
-        <div className="sm:col-span-5 p-9">
-          <div className="border border-gray-700 p-4 justify-center items-center rounded-lg w-72">
+        <div className="sm:col-span-5 p-7 px-4">
+          <div className="border border-gray-700 p-4 justify-center items-center rounded-lg w-[350px]">
             <h1 className="font-extrabold text-2xl p-2">New to X?</h1>
             <p className="text-xs text-slate-500 pb-3">Sign up now to get your own personalized timeline!</p>
             <GoogleLogin

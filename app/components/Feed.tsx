@@ -2,7 +2,7 @@
 import React from "react";
 import { useGetAllTweets } from "../../hooks/tweet";
 import FeedCard from "./FeedCard";
-import { Tweet } from "@/gql/graphql";
+import { Tweet } from "@/clients/gql/graphql";
 
 interface FeedProps {
   tweets?: Tweet[];

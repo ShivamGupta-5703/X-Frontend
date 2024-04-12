@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import LeftSideBar from "./components/LeftSideBar";
@@ -8,6 +8,8 @@ import { Toaster } from 'react-hot-toast';
 import {QueryProvider} from "./providers/QueryProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 import { LoginButton } from "./components/LoginButton";
+import { RecommendationCard } from "./components/RecommendationCard";
+import SearchBar from "./components/SearchBar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,6 +19,7 @@ export default function Home({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html  lang="en">
       <body>
@@ -33,7 +36,9 @@ export default function Home({
                 </div>
 
                 <div className="col-span-0 sm:col-span-3 p-5">
+                  <SearchBar/>
                   <LoginButton/>
+                  <RecommendationCard/>
                 </div>
               </div>
             </div>

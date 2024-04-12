@@ -6,7 +6,7 @@ import { graphqlClient } from '@/clients/api';
 import {Tweet} from '@/graphql/query/tweet';
 import { DocumentNode } from 'graphql';
 import { createTweetMutation } from '@/graphql/mutation/tweet';
-import { CreateTweetData } from '@/gql/graphql';
+import { CreateTweetData } from '@/clients/gql/graphql';
 import toast from 'react-hot-toast';
 
 
