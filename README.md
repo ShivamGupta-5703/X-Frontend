@@ -24,6 +24,8 @@
 ## <a name="introduction">🤖 Introduction</a>
 A FullStack X Clone that allows users to create and post tweets, follow other users, and like, and view their own profiles and the profiles of other users.
 
+https://github.com/ShivamGupta-5703/X-Frontend/assets/134150130/06de12af-6db6-4abd-afb8-2386f8dadcb0
+
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - Node.js             -> for our backend code which would be running GraphQL server inside the node.js environment.
