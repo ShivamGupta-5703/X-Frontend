@@ -21,10 +21,11 @@
   <h3 align="center">A full stack X Clone</h3>
 </div>
 
-## <a name="introduction">🤖 Introduction</a>
+## <a name="introduction">Introduction 🤖</a>
 A FullStack X Clone that allows users to create and post tweets, follow other users, and like, and view their own profiles and the profiles of other users.
 
-<video src='https://github.com/ShivamGupta-5703/X-Frontend/assets/134150130/06de12af-6db6-4abd-afb8-2386f8dadcb0' width=180/>
+## <a name="introduction">Preview 🎬</a>
+https://github.com/ShivamGupta-5703/X-Frontend/assets/134150130/06de12af-6db6-4abd-afb8-2386f8dadcb0
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
