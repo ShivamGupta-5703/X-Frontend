@@ -2,7 +2,7 @@
 
 import React, { useCallback } from 'react'
 import { graphqlClient } from "@/clients/api";
-import { verifyUserGoogleTokenQuery } from "../../graphql/query/user";
+import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
 import { useQueryClient } from '@tanstack/react-query'
 import { useGetCurrentUser } from "@/hooks/user";
 import { CredentialResponse } from '@react-oauth/google';

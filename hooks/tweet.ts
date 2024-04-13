@@ -6,7 +6,7 @@ import { graphqlClient } from '@/clients/api';
 import {Tweet} from '@/graphql/query/tweet';
 import { DocumentNode } from 'graphql';
 import { createTweetMutation } from '@/graphql/mutation/tweet';
-import { CreateTweetData } from '@/clients/gql/graphql';
+import { CreateTweetData } from '@/gql/graphql';
 import toast from 'react-hot-toast';
 
 
@@ -15,6 +15,9 @@ export const useGetAllTweets = () => {
     queryKey: ["getAllTweets"],
     queryFn: () => graphqlClient.request<{ getAllTweets: Tweet[] }>(getAllTweetsQuery as DocumentNode),
   });
+
+  //console.log(query.isSuccess);
+  
   return { ...query, tweets: query.data?.getAllTweets };  
 };
 

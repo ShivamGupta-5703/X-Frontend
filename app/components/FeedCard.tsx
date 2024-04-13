@@ -4,11 +4,11 @@ import Image from 'next/image'
 import { BiMessageRounded, BiUpload } from "react-icons/bi";
 import { BsBookmark } from "react-icons/bs";
 import { FaRetweet } from "react-icons/fa";
-import { AiOutlineHeart } from "react-icons/ai";
 import { CgInsights } from "react-icons/cg";
-import { Tweet } from '@/clients/gql/graphql';
+import { Likes, Tweet } from '@//gql/graphql';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import Link from 'next/link';
+import { LikeButton } from './LikeButton';
 
 interface FeedCardProps{
   data: Tweet
@@ -52,7 +52,7 @@ const FeedCard : React.FC<FeedCardProps> = (props) => {
                   <FaRetweet />
                 </div>
                 <div>
-                  <AiOutlineHeart />
+                <LikeButton tweetId={data.id} likes={data.likes as Likes[]} />
                 </div>
                 <div>
                   <CgInsights/>

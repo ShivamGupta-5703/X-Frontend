@@ -1,4 +1,4 @@
-import { graphql } from "@/clients/gql";
+import { graphql } from "@/gql";
 
 export const verifyUserGoogleTokenQuery = graphql(
     `#graphql

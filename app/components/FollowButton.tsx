@@ -5,7 +5,7 @@ import {
   followUserMutation,
   unfollowUserMutation,
 } from "@/graphql/mutation/user";
-import { User } from "@/clients/gql/graphql";
+import { User } from "@/gql/graphql";
 
 interface FollowButtonProps extends HTMLAttributes<HTMLButtonElement> {
   user: User;

@@ -1,4 +1,4 @@
-import { graphql } from "@/clients/gql";
+import { graphql } from "@/gql";
 
 export interface Tweet {
     id: string;
@@ -6,10 +6,17 @@ export interface Tweet {
     imageURL: string;
     author: {
         id : string;
-        firstName: string;
-        lastName: string;
+        firstname: string;
+        lastname: string;
         profileImageURL: string;
     };
+    likes: {
+        liker: {
+          id : string;
+          firstname: string;
+          lastname: string;
+        }
+    }
 }
 
 export const getAllTweetsQuery = graphql(
@@ -24,6 +31,13 @@ export const getAllTweetsQuery = graphql(
                 firstname
                 lastname
                 profileImageURL
+            }
+            likes {
+                liker {
+                  id
+                  firstname
+                  lastname
+                }
             }
         }
       }

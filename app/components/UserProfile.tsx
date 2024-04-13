@@ -4,7 +4,7 @@ import React from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useGetUserById } from "@/hooks/user";
 import Link from "next/link";
-import { User } from "@/clients/gql/graphql";
+import { User } from "@/gql/graphql";
 import FollowButton from "./FollowButton";
 
 
