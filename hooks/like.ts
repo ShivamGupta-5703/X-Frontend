@@ -12,9 +12,9 @@ export const useLikeTweet = () => {
     mutationFn: (payload: LikeUnlikeTweetData) =>
       graphqlClient.request(likeTweetMutation as DocumentNode, { payload }),
   }) as any ;
-  console.log("hiiiiiiiiiiiiiiii");
+  //console.log("hiiiiiiiiiiiiiiii");
   
-  console.log(mutation);
+  //console.log(mutation);
   
   return mutation;
 };
